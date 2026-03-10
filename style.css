@@ -76,7 +76,7 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
-aspect-ratio:1920/416;
+aspect-ratio:1440/180;
 }
 
 /* ===== CONTENIDO ===== */
@@ -144,7 +144,7 @@ height:auto;
 @media(max-width:768px){
 
 .banner img{
-aspect-ratio:370/80;
+aspect-ratio:370/60;
 }
 
 .search img{
