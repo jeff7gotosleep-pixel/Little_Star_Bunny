@@ -142,23 +142,26 @@ margin-top:40px;
 /* GRID */
 
 .texting-grid{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
+display:flex;
+flex-direction:column;
 gap:30px;
 }
 
 /* POSICIONES */
-
+  
 .left{
-grid-column:1;
+align-self:flex-start;
+max-width:650px;
 }
 
 .center{
-grid-column:2;
+align-self:center;
+max-width:650px;
 }
 
 .right{
-grid-column:3;
+align-self:flex-end;
+max-width:650px;
 }
 
 /* BLOQUES */
