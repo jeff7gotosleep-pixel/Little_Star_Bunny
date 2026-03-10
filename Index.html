@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Information Hero</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">Information Hero</div>
+
+<div class="search">
+<img src="img/lupa.svg" alt="Buscar">
+</div>
+
+</header>
+
+
+<!-- MENU -->
+
+<div class="nav">
+
+<a href="name.html">Últimas noticias</a>
+<a href="temporada.html">Calendario de temporada</a>
+<a href="articulos.html">Artículos</a>
+<a href="tests.html">Tests</a>
+<a href="guias.html">Guías</a>
+<a href="entrevistas.html">Entrevistas</a>
+<a href="mas.html">Más</a>
+<a href="acerca.html">Acerca</a>
+
+</div>
+
+
+<!-- FRANJA NARANJA -->
+
+<div id="orangeLine" class="orange-line"></div>
+
+
+<!-- BANNER -->
+
+<div class="banner" id="bannerLink">
+
+<img id="bannerImg">
+
+</div>
+
+
+<div class="container">
+
+<div id="newsContainer"></div>
+
+</div>
+
+
+
+<script>
+
+/* =========================
+CONFIGURACION PAGINA
+========================= */
+
+const pagina = {
+
+orangeLine:{
+pc:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/franga.png?w=1440&allow_lossy=1",
+cell:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/orangeline_cell.png?allow_lossy=1"
+},
+
+banner:{
+pc:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/banner_pc.png?w=1440&allow_lossy=1",
+cell:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/banner_cell.png?allow_lossy=1",
+ruta:"noticia-principal.html"
+},
+
+News: [
+
+{
+Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/jim-carrey.png?allow_lossy=1",
+texto:["¿Jim Carrey Es un Clon?"],
+Fecha:["8 de marzo"],
+Ruta:"JimClon.html"
+},
+
+{
+Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/imanch.png?allow_lossy=1",
+texto:["Noticia sobre el villano Shawl"],
+Fecha:["8 de marzo","12:22"],
+Ruta:"ShawlVillain.html"
+},
+
+{
+Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/imanch.png?allow_lossy=1",
+texto:["Nueva historia del universo Hero"],
+Fecha:[],
+Ruta:"HeroWorld.html"
+}
+
+]
+
+}
+
+
+/* =========================
+DETECTAR DISPOSITIVO
+========================= */
+
+function esCelular(){
+
+return window.innerWidth <= 768;
+
+}
+
+
+/* =========================
+CARGAR IMAGENES RESPONSIVE
+========================= */
+
+function cargarImagenes(){
+
+const orange = document.getElementById("orangeLine");
+const bannerImg = document.getElementById("bannerImg");
+
+if(esCelular()){
+
+orange.style.backgroundImage =
+`url(${pagina.orangeLine.cell})`;
+
+bannerImg.src = pagina.banner.cell;
+
+}else{
+
+orange.style.backgroundImage =
+`url(${pagina.orangeLine.pc})`;
+
+bannerImg.src = pagina.banner.pc;
+
+}
+
+}
+
+cargarImagenes();
+
+window.addEventListener("resize",cargarImagenes);
+
+
+/* =========================
+CLICK BANNER
+========================= */
+
+const banner = document.getElementById("bannerLink");
+
+banner.onclick = () => {
+
+window.location.href = pagina.banner.ruta;
+
+};
+
+
+/* =========================
+CARGAR NOTICIAS
+========================= */
+
+const container = document.getElementById("newsContainer");
+
+pagina.News.forEach(n=>{
+
+const card=document.createElement("div");
+card.className="news-card";
+
+let fechaHTML="";
+
+if(n.Fecha && n.Fecha.length){
+
+fechaHTML=`<div class="news-date">${n.Fecha.join(" ")}</div>`;
+
+}
+
+card.innerHTML=`
+
+<img src="${n.Imagen}" onclick="window.location.href='${n.Ruta}'">
+
+<div class="news-info">
+
+<h2 onclick="window.location.href='${n.Ruta}'">
+${n.texto.join("")}
+</h2>
+
+${fechaHTML}
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+</script>
+
+</body>
+</html>
