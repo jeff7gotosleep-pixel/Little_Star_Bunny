@@ -88,23 +88,31 @@ max-width:1400px;
 margin:auto;
 }
 
-/* ===== GRID PRINCIPAL (3 COLUMNAS) ===== */
+/* ===== GRID PRINCIPAL ===== */
 
 .news-layout{
 display:grid;
-grid-template-columns:2fr 1fr 1fr;
+grid-template-columns:2fr 1fr;
 gap:40px;
 align-items:start;
 }
 
-/* ===== POSICIONAR COLUMNAS ===== */
+/* ===== SUBGRID IZQUIERDA ===== */
 
 .left-column{
-grid-column:1;
-display:flex;
-flex-direction:column;
+display:grid;
+grid-template-columns:2fr 1fr;
 gap:40px;
+align-items:start;
 }
+
+/* ONE NEWS ocupa columna grande */
+
+#oneNews{
+grid-column:1;
+}
+
+/* TWO NEWS queda en el medio */
 
 #twoNews{
 grid-column:2;
@@ -113,8 +121,9 @@ flex-direction:column;
 gap:30px;
 }
 
+/* THREE NEWS columna derecha */
+
 .right-column{
-grid-column:3;
 display:flex;
 flex-direction:column;
 gap:30px;
@@ -188,14 +197,10 @@ grid-template-columns:1fr;
 }
 
 .left-column{
-grid-column:auto;
+grid-template-columns:1fr;
 }
 
 #twoNews{
-grid-column:auto;
-}
-
-.right-column{
 grid-column:auto;
 }
 
