@@ -139,7 +139,7 @@ max-height:95%;
 margin-top:40px;
 }
 
-/* GRID 3 COLUMNAS */
+/* GRID */
 
 .texting-grid{
 display:grid;
@@ -147,12 +147,18 @@ grid-template-columns:1fr 1fr 1fr;
 gap:30px;
 }
 
-#text-left,
-#text-center,
-#text-right{
-display:flex;
-flex-direction:column;
-gap:30px;
+/* POSICIONES */
+
+.left{
+grid-column:1;
+}
+
+.center{
+grid-column:2;
+}
+
+.right{
+grid-column:3;
 }
 
 /* BLOQUES */
@@ -184,6 +190,7 @@ color:white;
 
 .text-images img{
 width:100%;
+max-width:650px;
 margin-top:15px;
 border-radius:10px;
 }
@@ -194,6 +201,10 @@ border-radius:10px;
 
 .texting-grid{
 grid-template-columns:1fr;
+}
+
+.left,.center,.right{
+grid-column:1;
 }
 
 }
@@ -255,13 +266,7 @@ padding:20px;
 
 <h2>Texting:</h2>
 
-<div class="texting-grid">
-
-<div id="text-left"></div>
-<div id="text-center"></div>
-<div id="text-right"></div>
-
-</div>
+<div id="texting" class="texting-grid"></div>
 
 </div>
 
@@ -383,11 +388,9 @@ one.appendChild(img)
 
 })
 
-/* TEXTING CON ORIENTACION */
+/* TEXTING */
 
-const left=document.getElementById("text-left")
-const center=document.getElementById("text-center")
-const right=document.getElementById("text-right")
+const texting=document.getElementById("texting")
 
 pagina.Texting.forEach(post=>{
 
@@ -419,7 +422,6 @@ html+=`<a href="${url}" target="_blank">${texto}</a>`
 })
 
 html+=`</div>`
-
 }
 
 if(key==="imagenes" && value && value.length){
@@ -438,20 +440,24 @@ html+=`</div>`
 
 div.innerHTML=html
 
+/* ORIENTACION */
+
 switch(post.Orientacion){
 
 case "izquierda":
-left.appendChild(div)
+div.classList.add("left")
 break
 
 case "derecha":
-right.appendChild(div)
+div.classList.add("right")
 break
 
 default:
-center.appendChild(div)
+div.classList.add("center")
 
 }
+
+texting.appendChild(div)
 
 })
 
