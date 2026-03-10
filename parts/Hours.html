@@ -1,1 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Little Star Bunny</title>
+
+<style>
+
+/* ===== BASE ===== */
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#000;
+color:white;
+}
+
+/* ===== HEADER ===== */
+
+header{
+background:#0b0b0b;
+padding:15px 40px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #222;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.search{
+cursor:pointer;
+display:flex;
+align-items:center;
+}
+
+.search img{
+width:24px;
+height:24px;
+}
+
+/* ===== MENU ===== */
+
+.nav{
+display:flex;
+gap:25px;
+padding:10px 40px;
+background:#000;
+font-weight:bold;
+flex-wrap:wrap;
+}
+
+.nav a{
+color:white;
+text-decoration:none;
+font-size:15px;
+}
+
+.nav a:hover{
+color:#27F5C2;
+}
+
+/* ===== LINEA ===== */
+
+.orange-line{
+width:100%;
+height:4px;
+background-size:cover;
+}
+
+/* ===== BANNER ===== */
+
+.banner{
+width:100%;
+background:#111;
+cursor:pointer;
+overflow:hidden;
+}
+
+.banner img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+aspect-ratio:1440/180;
+}
+
+/* ===== CONTENIDO ===== */
+
+.container{
+padding:40px;
+max-width:1400px;
+margin:auto;
+}
+
+/* ===== IMAGEN GRANDE ===== */
+
+.big-image{
+display:flex;
+justify-content:center;
+margin-bottom:40px;
+}
+
+.big-image img{
+max-width:900px;
+width:100%;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* ===== PANTALLA COMPLETA ===== */
+
+.fullscreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.fullscreen img{
+max-width:95%;
+max-height:95%;
+}
+
+/* ===== TEXTING ===== */
+
+.texting-section{
+margin-top:40px;
+}
+
+.text-block{
+background:#111;
+padding:20px;
+border-radius:10px;
+margin-bottom:30px;
+}
+
+.text-block h3{
+margin-top:0;
+color:#27F5C2;
+}
+
+.text-links a{
+display:inline-block;
+margin-right:12px;
+margin-top:6px;
+font-weight:bold;
+color:#EEE0F7;
+text-decoration:none;
+}
+
+.text-links a:hover{
+text-decoration:underline;
+color:white;
+}
+
+.text-images img{
+width:100%;
+margin-top:15px;
+border-radius:10px;
+max-width:700px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+.banner img{
+aspect-ratio:370/60;
+}
+
+.search img{
+width:32px;
+height:32px;
+}
+
+.container{
+padding:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">Little Star Bunny</div>
+
+<div class="search">
+<img src="img/lupa.svg" alt="Buscar">
+</div>
+
+</header>
+
+<div class="nav">
+
+<a href="index.html">Index</a>
+<a href="Articulos.html">Artículos</a>
+<a href="Anotaciones.html">Tablon De Anotaciones</a>
+<a href="Hours.html">Horarios Explicados</a>
+<a href="Extra.html">Más</a>
+
+</div>
+
+<div id="orangeLine" class="orange-line"></div>
+
+<div class="banner" id="bannerLink">
+<img id="bannerImg">
+</div>
+
+<div class="container">
+
+<!-- IMAGEN GRANDE -->
+
+<div id="oneNews" class="big-image"></div>
+
+<!-- TEXTING -->
+
+<div class="texting-section">
+
+<h2>Texting:</h2>
+
+<div id="texting"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const pagina={
+
+orangeLine:{
+pc:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/franja_final.png?w=1440&allow_lossy=1",
+cell:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/watergren_cell.png?allow_lossy=1"
+},
+
+banner:{
+img:"img/Uzaki-Chan.svg",
+ruta:"noticia-principal.html"
+},
+
+One_News:[
+{
+Imagen:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/horarios.png?allow_lossy=1",
+Ruta:"Hours.html"
+}
+],
+
+Texting:[
+
+{
+titulo:"Lookbunny",
+texto:"Texto malote malotin",
+
+TextUrl:["Song","HD"],
+
+Url:[
+"https://music.youtube.com/watch?v=7gZDH3Bc7tg",
+"https://hentaihd.xyz/ver/tenioha-audio-latino-episodio-1"
+],
+
+imagenes:[
+{num:1,page:"https://atsket.wordpress.com/wp-content/uploads/2026/02/nanase-hibiki.png?allow_lossy=1"},
+{num:2,page:"https://atsket.wordpress.com/wp-content/uploads/2026/02/nanase-hibiki.png?allow_lossy=1"}
+]
+
+},
+
+{
+texto:"Ejemplo donde el texto aparece primero",
+titulo:"Titulo después",
+
+imagenes:[
+{num:1,page:"https://atsket.wordpress.com/wp-content/uploads/2026/02/nanase-hibiki.png?allow_lossy=1"}
+]
+}
+
+]
+
+}
+
+/* DETECTAR CELULAR */
+
+function esCelular(){
+return window.innerWidth<=768
+}
+
+/* CARGAR IMAGENES */
+
+function cargarImagenes(){
+
+const orange=document.getElementById("orangeLine")
+const bannerImg=document.getElementById("bannerImg")
+
+bannerImg.src=pagina.banner.img
+
+if(esCelular()){
+orange.style.backgroundImage=`url(${pagina.orangeLine.cell})`
+}else{
+orange.style.backgroundImage=`url(${pagina.orangeLine.pc})`
+}
+
+}
+
+cargarImagenes()
+window.addEventListener("resize",cargarImagenes)
+
+/* CLICK BANNER */
+
+document.getElementById("bannerLink").onclick=()=>{
+window.location.href=pagina.banner.ruta
+}
+
+/* IMAGEN GRANDE */
+
+const one=document.getElementById("oneNews")
+
+pagina.One_News.forEach(n=>{
+
+const img=document.createElement("img")
+img.src=n.Imagen
+
+img.onclick=()=>{
+
+const full=document.createElement("div")
+full.className="fullscreen"
+
+full.innerHTML=`<img src="${n.Imagen}">`
+
+full.onclick=()=>full.remove()
+
+document.body.appendChild(full)
+
+}
+
+one.appendChild(img)
+
+})
+
+/* TEXTING FLEXIBLE */
+
+const texting=document.getElementById("texting")
+
+pagina.Texting.forEach(post=>{
+
+const div=document.createElement("div")
+div.className="text-block"
+
+let html=""
+
+Object.entries(post).forEach(([key,value])=>{
+
+if(key==="titulo" && value){
+html+=`<h3>${value}</h3>`
+}
+
+if(key==="texto" && value){
+html+=`<p>${value}</p>`
+}
+
+if(key==="Url" && value.length){
+
+html+=`<div class="text-links">`
+
+value.forEach((url,i)=>{
+
+const texto=post.TextUrl && post.TextUrl[i] ? post.TextUrl[i] : url
+
+html+=`<a href="${url}" target="_blank">${texto}</a>`
+
+})
+
+html+=`</div>`
+
+}
+
+if(key==="imagenes" && value.length){
+
+html+=`<div class="text-images">`
+
+value.forEach(img=>{
+html+=`<img src="${img.page}">`
+})
+
+html+=`</div>`
+
+}
+
+})
+
+div.innerHTML=html
+texting.appendChild(div)
+
+})
+
+</script>
+
+</body>
+</html>
