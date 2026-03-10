@@ -12,8 +12,6 @@
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
 <div class="logo">Little Star Bunny</div>
@@ -24,8 +22,6 @@
 
 </header>
 
-
-<!-- MENU -->
 
 <div class="nav">
 
@@ -41,26 +37,35 @@
 </div>
 
 
-<!-- FRANJA NARANJA -->
-
 <div id="orangeLine" class="orange-line"></div>
 
 
-<!-- BANNER -->
-
 <div class="banner" id="bannerLink">
-
 <img id="bannerImg">
-
 </div>
 
 
 <div class="container">
 
-<div id="newsContainer"></div>
+<div class="news-layout">
+
+<div class="left-column">
+
+<div id="oneNews"></div>
+
+<div id="twoNews"></div>
 
 </div>
 
+<div class="right-column">
+
+<div id="threeNews"></div>
+
+</div>
+
+</div>
+
+</div>
 
 
 <script>
@@ -77,16 +82,40 @@ cell:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/watergren
 },
 
 banner:{
-
-/* SOLO UNA RUTA SVG */
-
 img:"img/Uzaki-Chan.svg",
-
 ruta:"noticia-principal.html"
-
 },
 
-News: [
+One_News:[
+
+{
+Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/jim-carrey.png?allow_lossy=1",
+texto:["¿Jim Carrey Es un Clon?"],
+Fecha:["8 de marzo"],
+Ruta:"JimClon.html"
+}
+
+],
+
+Two_News:[
+
+{
+Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/imanch.png?allow_lossy=1",
+texto:["Noticia sobre el villano Shawl"],
+Fecha:["8 de marzo","12:22"],
+Ruta:"ShawlVillain.html"
+},
+
+{
+Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/imanch.png?allow_lossy=1",
+texto:["Nueva historia del universo Hero"],
+Fecha:[],
+Ruta:"HeroWorld.html"
+}
+
+],
+
+Three_News:[
 
 {
 Imagen:"https://informatiom0.wordpress.com/wp-content/uploads/2026/03/jim-carrey.png?allow_lossy=1",
@@ -119,14 +148,12 @@ DETECTAR DISPOSITIVO
 ========================= */
 
 function esCelular(){
-
 return window.innerWidth <= 768;
-
 }
 
 
 /* =========================
-CARGAR IMAGENES RESPONSIVE
+CARGAR IMAGENES
 ========================= */
 
 function cargarImagenes(){
@@ -134,28 +161,17 @@ function cargarImagenes(){
 const orange = document.getElementById("orangeLine");
 const bannerImg = document.getElementById("bannerImg");
 
-/* BANNER SVG (SIEMPRE EL MISMO) */
-
 bannerImg.src = pagina.banner.img;
 
-/* SOLO CAMBIA LA LINEA */
-
 if(esCelular()){
-
-orange.style.backgroundImage =
-`url(${pagina.orangeLine.cell})`;
-
+orange.style.backgroundImage=`url(${pagina.orangeLine.cell})`;
 }else{
-
-orange.style.backgroundImage =
-`url(${pagina.orangeLine.pc})`;
-
+orange.style.backgroundImage=`url(${pagina.orangeLine.pc})`;
 }
 
 }
 
 cargarImagenes();
-
 window.addEventListener("resize",cargarImagenes);
 
 
@@ -163,33 +179,28 @@ window.addEventListener("resize",cargarImagenes);
 CLICK BANNER
 ========================= */
 
-const banner = document.getElementById("bannerLink");
-
-banner.onclick = () => {
-
-window.location.href = pagina.banner.ruta;
-
+document.getElementById("bannerLink").onclick=()=>{
+window.location.href=pagina.banner.ruta;
 };
 
 
 /* =========================
-CARGAR NOTICIAS
+ONE NEWS (NOTICIA GRANDE)
 ========================= */
 
-const container = document.getElementById("newsContainer");
+const oneContainer=document.getElementById("oneNews");
 
-pagina.News.forEach(n=>{
-
-const card=document.createElement("div");
-card.className="news-card";
+pagina.One_News.forEach(n=>{
 
 let fechaHTML="";
 
 if(n.Fecha && n.Fecha.length){
-
 fechaHTML=`<div class="news-date">${n.Fecha.join(" ")}</div>`;
-
 }
+
+const card=document.createElement("div");
+
+card.className="news-card big-news";
 
 card.innerHTML=`
 
@@ -207,7 +218,77 @@ ${fechaHTML}
 
 `;
 
-container.appendChild(card);
+oneContainer.appendChild(card);
+
+});
+
+
+/* =========================
+TWO NEWS
+========================= */
+
+const twoContainer=document.getElementById("twoNews");
+
+pagina.Two_News.forEach(n=>{
+
+let fechaHTML="";
+
+if(n.Fecha && n.Fecha.length){
+fechaHTML=`<div class="news-date">${n.Fecha.join(" ")}</div>`;
+}
+
+const card=document.createElement("div");
+
+card.className="small-news";
+
+card.innerHTML=`
+
+<img src="${n.Imagen}" onclick="window.location.href='${n.Ruta}'">
+
+<h3 onclick="window.location.href='${n.Ruta}'">
+${n.texto.join("")}
+</h3>
+
+${fechaHTML}
+
+`;
+
+twoContainer.appendChild(card);
+
+});
+
+
+/* =========================
+THREE NEWS
+========================= */
+
+const threeContainer=document.getElementById("threeNews");
+
+pagina.Three_News.forEach(n=>{
+
+let fechaHTML="";
+
+if(n.Fecha && n.Fecha.length){
+fechaHTML=`<div class="news-date">${n.Fecha.join(" ")}</div>`;
+}
+
+const card=document.createElement("div");
+
+card.className="small-news";
+
+card.innerHTML=`
+
+<img src="${n.Imagen}" onclick="window.location.href='${n.Ruta}'">
+
+<h3 onclick="window.location.href='${n.Ruta}'">
+${n.texto.join("")}
+</h3>
+
+${fechaHTML}
+
+`;
+
+threeContainer.appendChild(card);
 
 });
 
