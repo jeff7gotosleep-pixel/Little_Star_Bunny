@@ -77,9 +77,13 @@ cell:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/watergren
 },
 
 banner:{
-pc:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/banner1_pc_new.png?allow_lossy=1",
-cell:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/banner1_cell_new.png?allow_lossy=1",
+
+/* SOLO UNA RUTA SVG */
+
+img:"img/Uzaki-Chan_PC.svg",
+
 ruta:"noticia-principal.html"
+
 },
 
 News: [
@@ -130,19 +134,21 @@ function cargarImagenes(){
 const orange = document.getElementById("orangeLine");
 const bannerImg = document.getElementById("bannerImg");
 
+/* BANNER SVG (SIEMPRE EL MISMO) */
+
+bannerImg.src = pagina.banner.img;
+
+/* SOLO CAMBIA LA LINEA */
+
 if(esCelular()){
 
 orange.style.backgroundImage =
 `url(${pagina.orangeLine.cell})`;
 
-bannerImg.src = pagina.banner.cell;
-
 }else{
 
 orange.style.backgroundImage =
 `url(${pagina.orangeLine.pc})`;
-
-bannerImg.src = pagina.banner.pc;
 
 }
 
