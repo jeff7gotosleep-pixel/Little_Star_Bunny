@@ -269,7 +269,191 @@ padding:20px;
 
 <script>
 
-/* TODO TU JS SIGUE EXACTAMENTE IGUAL */
+const pagina={
+
+orangeLine:{
+pc:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/franja_final.png?w=1440&allow_lossy=1",
+cell:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/watergren_cell.png?allow_lossy=1"
+},
+
+banner:{
+img:"img/Uzaki-Chan.svg",
+ruta:"noticia-principal.html"
+},
+
+One_News:[
+{
+Imagen:"https://littlestarbunny.wordpress.com/wp-content/uploads/2026/03/horarios.png?allow_lossy=1",
+Ruta:"Hours.html"
+}
+],
+
+Texting:[
+
+{
+Orientacion:"izquierda",
+
+titulo:"Lookbunny",
+texto:"Texto malote malotin",
+
+TextUrl:["Song","HD"],
+
+Url:[
+"https://music.youtube.com/watch?v=7gZDH3Bc7tg",
+"https://hentaihd.xyz/ver/tenioha-audio-latino-episodio-1"
+],
+
+imagenes:[
+{num:1,page:"https://atsket.wordpress.com/wp-content/uploads/2026/02/nanase-hibiki.png?allow_lossy=1"},
+{num:2,page:"https://atsket.wordpress.com/wp-content/uploads/2026/02/nanase-hibiki.png?allow_lossy=1"}
+]
+
+},
+
+{
+Orientacion:"derecha",
+
+texto:"Ejemplo donde el texto aparece primero",
+titulo:"Titulo después",
+
+imagenes:[
+{num:1,page:"https://atsket.wordpress.com/wp-content/uploads/2026/02/nanase-hibiki.png?allow_lossy=1"}
+]
+}
+
+]
+
+}
+
+/* DETECTAR CELULAR */
+
+function esCelular(){
+return window.innerWidth<=768
+}
+
+/* CARGAR IMAGENES */
+
+function cargarImagenes(){
+
+const orange=document.getElementById("orangeLine")
+const bannerImg=document.getElementById("bannerImg")
+
+bannerImg.src=pagina.banner.img
+
+if(esCelular()){
+orange.style.backgroundImage=`url(${pagina.orangeLine.cell})`
+}else{
+orange.style.backgroundImage=`url(${pagina.orangeLine.pc})`
+}
+
+}
+
+cargarImagenes()
+window.addEventListener("resize",cargarImagenes)
+
+/* CLICK BANNER */
+
+document.getElementById("bannerLink").onclick=()=>{
+window.location.href=pagina.banner.ruta
+}
+
+/* IMAGEN GRANDE */
+
+const one=document.getElementById("oneNews")
+
+pagina.One_News.forEach(n=>{
+
+const img=document.createElement("img")
+img.src=n.Imagen
+
+img.onclick=()=>{
+
+const full=document.createElement("div")
+full.className="fullscreen"
+
+full.innerHTML=`<img src="${n.Imagen}">`
+
+full.onclick=()=>full.remove()
+
+document.body.appendChild(full)
+
+}
+
+one.appendChild(img)
+
+})
+
+/* TEXTING CON ORIENTACION */
+
+const left=document.getElementById("text-left")
+const center=document.getElementById("text-center")
+const right=document.getElementById("text-right")
+
+pagina.Texting.forEach(post=>{
+
+const div=document.createElement("div")
+div.className="text-block"
+
+let html=""
+
+Object.entries(post).forEach(([key,value])=>{
+
+if(key==="titulo" && value){
+html+=`<h3>${value}</h3>`
+}
+
+if(key==="texto" && value){
+html+=`<p>${value}</p>`
+}
+
+if(key==="Url" && value && value.length){
+
+html+=`<div class="text-links">`
+
+value.forEach((url,i)=>{
+
+const texto=post.TextUrl && post.TextUrl[i] ? post.TextUrl[i] : url
+
+html+=`<a href="${url}" target="_blank">${texto}</a>`
+
+})
+
+html+=`</div>`
+
+}
+
+if(key==="imagenes" && value && value.length){
+
+html+=`<div class="text-images">`
+
+value.forEach(img=>{
+html+=`<img src="${img.page}">`
+})
+
+html+=`</div>`
+
+}
+
+})
+
+div.innerHTML=html
+
+switch(post.Orientacion){
+
+case "izquierda":
+left.appendChild(div)
+break
+
+case "derecha":
+right.appendChild(div)
+break
+
+default:
+center.appendChild(div)
+
+}
+
+})
 
 </script>
 
