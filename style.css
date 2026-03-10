@@ -68,12 +68,15 @@ background-size:cover;
 width:100%;
 background:#111;
 cursor:pointer;
+overflow:hidden;
 }
 
 .banner img{
 width:100%;
-height:auto;
+height:100%;
+object-fit:cover;
 display:block;
+aspect-ratio:1920/416;
 }
 
 /* ===== CONTENIDO ===== */
@@ -136,9 +139,13 @@ height:auto;
 
 }
 
-/* LUPA CELULAR */
+/* ===== BANNER CELULAR ===== */
 
 @media(max-width:768px){
+
+.banner img{
+aspect-ratio:370/80;
+}
 
 .search img{
 width:32px;
