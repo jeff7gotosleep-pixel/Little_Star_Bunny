@@ -139,8 +139,6 @@ max-height:95%;
 margin-top:40px;
 }
 
-/* GRID */
-
 .texting-grid{
 display:flex;
 flex-direction:column;
@@ -148,20 +146,23 @@ gap:30px;
 }
 
 /* POSICIONES */
-  
+
 .left{
 align-self:flex-start;
 max-width:650px;
+text-align:left;
 }
 
 .center{
 align-self:center;
 max-width:650px;
+text-align:center;
 }
 
 .right{
 align-self:flex-end;
 max-width:650px;
+text-align:right;
 }
 
 /* BLOQUES */
@@ -200,18 +201,6 @@ border-radius:10px;
 
 /* ===== RESPONSIVE ===== */
 
-@media(max-width:900px){
-
-.texting-grid{
-grid-template-columns:1fr;
-}
-
-.left,.center,.right{
-grid-column:1;
-}
-
-}
-
 @media(max-width:768px){
 
 .banner img{
@@ -227,24 +216,6 @@ height:32px;
 padding:20px;
 }
 
-.left{
-align-self:flex-start;
-max-width:650px;
-text-align:left;
-}
-
-.center{
-align-self:center;
-max-width:650px;
-text-align:center;
-}
-
-.right{
-align-self:flex-end;
-max-width:650px;
-text-align:right;
-}
-  
 }
 
 </style>
@@ -284,8 +255,6 @@ text-align:right;
 <div id="oneNews" class="big-image"></div>
 
 <div class="texting-section">
-
-<h2>Texting:</h2>
 
 <div id="texting" class="texting-grid"></div>
 
@@ -441,8 +410,6 @@ html+=`</div>`
 })
 
 div.innerHTML=html
-
-/* ORIENTACION */
 
 switch(post.Orientacion){
 
