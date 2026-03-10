@@ -139,11 +139,28 @@ max-height:95%;
 margin-top:40px;
 }
 
+/* GRID 3 COLUMNAS */
+
+.texting-grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:30px;
+}
+
+#text-left,
+#text-center,
+#text-right{
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+/* BLOQUES */
+
 .text-block{
 background:#111;
 padding:20px;
 border-radius:10px;
-margin-bottom:30px;
 }
 
 .text-block h3{
@@ -169,10 +186,17 @@ color:white;
 width:100%;
 margin-top:15px;
 border-radius:10px;
-max-width:700px;
 }
 
 /* ===== RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+.texting-grid{
+grid-template-columns:1fr;
+}
+
+}
 
 @media(max-width:768px){
 
@@ -225,17 +249,19 @@ padding:20px;
 
 <div class="container">
 
-<!-- IMAGEN GRANDE -->
-
 <div id="oneNews" class="big-image"></div>
-
-<!-- TEXTING -->
 
 <div class="texting-section">
 
 <h2>Texting:</h2>
 
-<div id="texting"></div>
+<div class="texting-grid">
+
+<div id="text-left"></div>
+<div id="text-center"></div>
+<div id="text-right"></div>
+
+</div>
 
 </div>
 
@@ -265,6 +291,8 @@ Ruta:"Hours.html"
 Texting:[
 
 {
+Orientacion:"izquierda",
+
 titulo:"Lookbunny",
 texto:"Texto malote malotin",
 
@@ -283,6 +311,8 @@ imagenes:[
 },
 
 {
+Orientacion:"derecha",
+
 texto:"Ejemplo donde el texto aparece primero",
 titulo:"Titulo después",
 
@@ -353,9 +383,11 @@ one.appendChild(img)
 
 })
 
-/* TEXTING FLEXIBLE */
+/* TEXTING CON ORIENTACION */
 
-const texting=document.getElementById("texting")
+const left=document.getElementById("text-left")
+const center=document.getElementById("text-center")
+const right=document.getElementById("text-right")
 
 pagina.Texting.forEach(post=>{
 
@@ -374,7 +406,7 @@ if(key==="texto" && value){
 html+=`<p>${value}</p>`
 }
 
-if(key==="Url" && value.length){
+if(key==="Url" && value && value.length){
 
 html+=`<div class="text-links">`
 
@@ -390,7 +422,7 @@ html+=`</div>`
 
 }
 
-if(key==="imagenes" && value.length){
+if(key==="imagenes" && value && value.length){
 
 html+=`<div class="text-images">`
 
@@ -405,7 +437,21 @@ html+=`</div>`
 })
 
 div.innerHTML=html
-texting.appendChild(div)
+
+switch(post.Orientacion){
+
+case "izquierda":
+left.appendChild(div)
+break
+
+case "derecha":
+right.appendChild(div)
+break
+
+default:
+center.appendChild(div)
+
+}
 
 })
 
